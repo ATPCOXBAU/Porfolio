@@ -1,0 +1,140 @@
+<section id="experience">
+  <div class="section-header fade-up">
+    <span class="section-num">02</span>
+    <h2>Experience</h2>
+  </div>
+  <div class="timeline">
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">Nov 2022<br />Present</div>
+        <div class="exp-dot"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Senior Developer</div>
+        <div class="exp-company">GuatemalaDigital S.A.</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented automation solutions for repetitive processes, significantly reducing human error rates.</li>
+          <li>Built robust data scraping pipelines for business intelligence and data analysis workflows.</li>
+          <li>Maintained and extended e-commerce platform features, improving reliability and user experience.</li>
+          <li>Implemented complex business logic across multiple heterogeneous technological platforms.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Python</span>
+          <span class="tag">Selenium</span>
+          <span class="tag">FastAPI</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">SQL Server</span>
+          <span class="tag">MongoDB</span>
+          <span class="tag">AWS</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="exp-item fade-up">
+      <div class="exp-meta">
+        <div class="exp-period">2020<br />Present</div>
+        <div class="exp-dot"></div>
+      </div>
+      <div class="exp-body">
+        <div class="exp-role">Teaching Assistant</div>
+        <div class="exp-company">Universidad San Carlos de Guatemala</div>
+        <ul class="exp-bullets">
+          <li>Auxiliary instructor for the Formal Languages and Programming Languages course.</li>
+          <li>Support students through complex topics in automata theory, grammars, and language design.</li>
+        </ul>
+        <div class="exp-tags">
+          <span class="tag">Automata Theory</span>
+          <span class="tag">Formal Grammars</span>
+          <span class="tag">Compilers</span>
+          <span class="tag">C++</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .exp-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .exp-item:first-child { padding-top: 0; }
+
+  .exp-meta {
+    padding-top: 0.2rem;
+  }
+
+  .exp-period {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.08em;
+    color: var(--ink-soft);
+    line-height: 1.8;
+  }
+
+  .exp-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--accent);
+    border-radius: 50%;
+    margin: 1rem 0 0.5rem;
+  }
+
+  .exp-role {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.4rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .exp-company {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    color: var(--accent-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .exp-bullets li {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    padding-left: 1.25rem;
+    position: relative;
+    line-height: 1.6;
+  }
+
+  .exp-bullets li::before {
+    content: '↗';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+    font-size: 0.7rem;
+    top: 0.15rem;
+  }
+
+  .exp-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.25rem;
+  }
+
+  @media (max-width: 768px) {
+    .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+  }
+</style>

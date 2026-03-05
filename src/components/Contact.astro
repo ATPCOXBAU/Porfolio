@@ -1,0 +1,90 @@
+<section id="contact">
+  <div class="contact-left">
+    <div class="section-header" style="margin-bottom:0">
+      <span class="section-num">05</span>
+      <h2>Let's talk.</h2>
+    </div>
+    <p class="contact-desc">
+      Open to new challenges, collaborations, and interesting backend problems. Don't hesitate to reach out.
+    </p>
+  </div>
+  <div class="contact-right">
+    <div class="contact-item">
+      <span class="contact-label">Email</span>
+      <a href="mailto:carloscoxbau@gmail.com" class="contact-value">carloscoxbau@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Phone</span>
+      <a href="tel:+50236717973" class="contact-value">+502 3671 7973</a>
+    </div>
+    <div class="contact-item">
+      <span class="contact-label">Location</span>
+      <span class="contact-value">Guatemala City, Guatemala</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  #contact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    padding: 0;
+  }
+
+  .contact-left {
+    padding: 7rem 4rem;
+    background: var(--accent);
+    color: #f8f9fc;
+  }
+
+  .contact-left h2 { color: #f5f3ff; }
+  .contact-left .section-num { color: rgba(248, 249, 252, 0.4); }
+
+  .contact-desc {
+    color: rgba(248, 249, 252, 0.7);
+    font-size: 0.95rem;
+    line-height: 1.75;
+    max-width: 36ch;
+    margin-top: 1.5rem;
+  }
+
+  .contact-right {
+    padding: 7rem 4rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    border-top: 1px solid var(--rule);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .contact-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .contact-value {
+    font-size: 1rem;
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .contact-value:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    #contact { grid-template-columns: 1fr; }
+    .contact-left, .contact-right { padding: 4rem 1.5rem; }
+  }
+</style>

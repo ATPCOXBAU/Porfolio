@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Carlos Cox — Backend Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f5f4f0;
+      --ink: #0f0f0e;
+      --ink-soft: #5a5a54;
+      --accent: #1a3a2e;
+      --accent-light: #2d6b50;
+      --rule: #d8d6ce;
+      --tag-bg: #e8e6df;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.25rem 4rem;
+      background: rgba(245,244,240,0.88);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--rule);
+    }
+    .nav-logo {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      font-weight: 400;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+    }
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 4rem;
+      border-right: 1px solid var(--rule);
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 2rem;
+      height: 1px;
+      background: var(--accent-light);
+    }
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(3rem, 5vw, 4.5rem);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: var(--ink-soft);
+      max-width: 38ch;
+      line-height: 1.75;
+      margin-bottom: 2.5rem;
+    }
+    .hero-cta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .btn-primary {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      background: var(--accent);
+      color: #f5f4f0;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); }
+    .btn-outline {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      border: 1px solid var(--ink);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: border-color 0.2s, color 0.2s, transform 0.2s;
+    }
+    .btn-outline:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 6rem 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'DM Serif Display', serif;
+      font-size: 18vw;
+      color: var(--rule);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+      opacity: 0.5;
+    }
+    .hero-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      position: relative;
+      z-index: 2;
+    }
+    .stat {
+      padding: 2rem;
+      border: 1px solid var(--rule);
+      margin: -1px 0 0 -1px;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif;
+      font-size: 2.5rem;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.25rem;
+    }
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 7rem 4rem;
+      border-top: 1px solid var(--rule);
+    }
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: 1.5rem;
+      margin-bottom: 4rem;
+    }
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--ink-soft);
+      letter-spacing: 0.1em;
+    }
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 3.5vw, 3rem);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    /* ── SKILLS ── */
+    #skills .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 0;
+    }
+    .skill-group {
+      padding: 2.5rem;
+      border: 1px solid var(--rule);
+      margin: -1px 0 0 -1px;
+      transition: background 0.2s;
+    }
+    .skill-group:hover { background: white; }
+    .skill-group-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+    }
+    .skill-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .skill-item {
+      font-size: 0.9rem;
+      color: var(--ink);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .skill-item::before {
+      content: '—';
+      font-family: 'DM Mono', monospace;
+      color: var(--rule);
+      font-size: 0.7rem;
+    }
+
+    /* ── EXPERIENCE ── */
+    #experience .timeline {
+      max-width: 800px;
+    }
+    .exp-item {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: 2rem;
+      padding: 3rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+    .exp-item:first-child { padding-top: 0; }
+    .exp-meta {
+      padding-top: 0.2rem;
+    }
+    .exp-period {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+      line-height: 1.8;
+    }
+    .exp-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--accent);
+      border-radius: 50%;
+      margin: 1rem 0 0.5rem;
+    }
+    .exp-role {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.25rem;
+    }
+    .exp-company {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.08em;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+    }
+    .exp-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      padding-left: 1.25rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .exp-bullets li::before {
+      content: '↗';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.7rem;
+      top: 0.15rem;
+    }
+    .exp-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 1.25rem;
+    }
+    .tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--tag-bg);
+      color: var(--ink-soft);
+      padding: 0.3rem 0.65rem;
+    }
+
+    /* ── EDUCATION ── */
+    #education .edu-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+    .edu-item {
+      padding: 3rem;
+      border: 1px solid var(--rule);
+      margin: -1px 0 0 -1px;
+      transition: background 0.2s;
+    }
+    .edu-item:hover { background: white; }
+    .edu-year {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+    .edu-degree {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.15rem;
+      line-height: 1.3;
+      margin-bottom: 0.4rem;
+    }
+    .edu-institution {
+      font-size: 0.85rem;
+      color: var(--ink-soft);
+    }
+
+    /* ── CERTIFICATIONS ── */
+    #certifications .cert-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      max-width: 700px;
+    }
+    .cert-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 0;
+      border-bottom: 1px solid var(--rule);
+      gap: 1rem;
+    }
+    .cert-info {}
+    .cert-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+    .cert-issuer {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+    .cert-link {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid var(--accent);
+      padding-bottom: 1px;
+      white-space: nowrap;
+      transition: opacity 0.2s;
+    }
+    .cert-link:hover { opacity: 0.6; }
+
+    /* ── CONTACT ── */
+    #contact {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      padding: 0;
+    }
+    .contact-left {
+      padding: 7rem 4rem;
+      background: var(--accent);
+      color: #f5f4f0;
+    }
+    .contact-left h2 { color: #f5f4f0; }
+    .contact-left .section-num { color: rgba(245,244,240,0.4); }
+    .contact-desc {
+      color: rgba(245,244,240,0.7);
+      font-size: 0.95rem;
+      line-height: 1.75;
+      max-width: 36ch;
+      margin-top: 1.5rem;
+    }
+    .contact-right {
+      padding: 7rem 4rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2rem;
+      border-top: 1px solid var(--rule);
+    }
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .contact-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+    .contact-value {
+      font-size: 1rem;
+      color: var(--ink);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-value:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem 4rem;
+      border-top: 1px solid var(--rule);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.08em;
+      color: var(--ink-soft);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { gap: 1.5rem; }
+      #hero { grid-template-columns: 1fr; }
+      .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+      .hero-right { padding: 3rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+      .exp-item { grid-template-columns: 1fr; gap: 0.5rem; }
+      #education .edu-grid { grid-template-columns: 1fr; }
+      #contact { grid-template-columns: 1fr; }
+      .contact-left, .contact-right { padding: 4rem 1.5rem; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <span class="nav-logo">C. Cox — Dev</span>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#certifications">Certs</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Backend Developer · Guatemala</p>
+      <h1>Carlos<br/><em>Cox</em><br/>Bautista</h1>
+      <p class="hero-desc">
+        Senior Developer specializing in automation, data engineering, 
+        and backend systems. Building solutions that reduce friction and generate real business value.
+      </p>
+      <div class="hero-cta">
+        <a href="#contact" class="btn-primary">Get in touch</a>
+        <a href="#experience" class="btn-outline">View my work</a>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="hero-bg-text">{ }</div>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Years Professional Exp.</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">6+</div>
+          <div class="stat-label">Languages & Stacks</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">C1</div>
+          <div class="stat-label">English Level (EF SET)</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">TA</div>
+          <div class="stat-label">Formal Languages Course</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="section-header fade-up">
+      <span class="section-num">01</span>
+      <h2>Technical Skills</h2>
+    </div>
+    <div class="grid fade-up">
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <div class="skill-list">
+          <span class="skill-item">Python</span>
+          <span class="skill-item">JavaScript / TypeScript</span>
+          <span class="skill-item">C / C++</span>
+          <span class="skill-item">C# / VB .NET</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Frameworks & Tools</div>
+        <div class="skill-list">
+          <span class="skill-item">FastAPI</span>
+          <span class="skill-item">Flask</span>
+          <span class="skill-item">Entity Framework</span>
+          <span class="skill-item">Selenium</span>
+          <span class="skill-item">React</span>
+          <span class="skill-item">Git</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Databases</div>
+        <div class="skill-list">
+          <span class="skill-item">SQL Server</span>
+          <span class="skill-item">MongoDB</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Cloud & Infra</div>
+        <div class="skill-list">
+          <span class="skill-item">AWS</span>
+          <span class="skill-item">UServer</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Soft Skills</div>
+        <div class="skill-list">
+          <span class="skill-item">Problem Solving</span>
+          <span class="skill-item">Work Under Pressure</span>
+          <span class="skill-item">Teamwork</span>
+          <span class="skill-item">Responsibility</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages Spoken</div>
+        <div class="skill-list">
+          <span class="skill-item">Spanish — Native</span>
+          <span class="skill-item">English — C1 Advanced</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="section-header fade-up">
+      <span class="section-num">02</span>
+      <h2>Experience</h2>
+    </div>
+    <div class="timeline">
+      <div class="exp-item fade-up">
+        <div class="exp-meta">
+          <div class="exp-period">Nov 2022<br/>Present</div>
+          <div class="exp-dot"></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Senior Developer</div>
+          <div class="exp-company">GuatemalaDigital S.A.</div>
+          <ul class="exp-bullets">
+            <li>Designed and implemented automation solutions for repetitive processes, significantly reducing human error rates.</li>
+            <li>Built robust data scraping pipelines for business intelligence and data analysis workflows.</li>
+            <li>Maintained and extended e-commerce platform features, improving reliability and user experience.</li>
+            <li>Implemented complex business logic across multiple heterogeneous technological platforms.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Python</span>
+            <span class="tag">Selenium</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">JavaScript</span>
+            <span class="tag">SQL Server</span>
+            <span class="tag">MongoDB</span>
+            <span class="tag">AWS</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-item fade-up">
+        <div class="exp-meta">
+          <div class="exp-period">2020<br/>Present</div>
+          <div class="exp-dot"></div>
+        </div>
+        <div class="exp-body">
+          <div class="exp-role">Teaching Assistant</div>
+          <div class="exp-company">Universidad San Carlos de Guatemala</div>
+          <ul class="exp-bullets">
+            <li>Auxiliary instructor for the Formal Languages and Programming Languages course.</li>
+            <li>Support students through complex topics in automata theory, grammars, and language design.</li>
+          </ul>
+          <div class="exp-tags">
+            <span class="tag">Automata Theory</span>
+            <span class="tag">Formal Grammars</span>
+            <span class="tag">Compilers</span>
+            <span class="tag">C++</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="section-header fade-up">
+      <span class="section-num">03</span>
+      <h2>Education</h2>
+    </div>
+    <div class="edu-grid fade-up">
+      <div class="edu-item">
+        <div class="edu-year">2020 — Present</div>
+        <div class="edu-degree">B.S. Computer Science &amp; Systems Engineering</div>
+        <div class="edu-institution">Universidad San Carlos de Guatemala</div>
+      </div>
+      <div class="edu-item">
+        <div class="edu-year">2018 — 2019</div>
+        <div class="edu-degree">High School Diploma in Science &amp; Letters</div>
+        <div class="edu-institution">Colegio Jesús Rey de Gloria<br/>Computer Science Orientation</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certifications">
+    <div class="section-header fade-up">
+      <span class="section-num">04</span>
+      <h2>Certifications</h2>
+    </div>
+    <div class="cert-list fade-up">
+      <div class="cert-item">
+        <div class="cert-info">
+          <div class="cert-name">JavaScript Algorithms and Data Structures</div>
+          <div class="cert-issuer">freeCodeCamp</div>
+        </div>
+        <a href="https://freecodecamp.org/certification/CARLOS_COX/javascript-algorithms-and-data-structures" target="_blank" class="cert-link">View ↗</a>
+      </div>
+      <div class="cert-item">
+        <div class="cert-info">
+          <div class="cert-name">Foundational C# with Microsoft</div>
+          <div class="cert-issuer">freeCodeCamp / Microsoft</div>
+        </div>
+        <a href="https://freecodecamp.org/certification/CARLOS_COX/foundational-c-sharp-with-microsoft" target="_blank" class="cert-link">View ↗</a>
+      </div>
+      <div class="cert-item">
+        <div class="cert-info">
+          <div class="cert-name">EF SET English Certificate C1 Advanced</div>
+          <div class="cert-issuer">EF Education First</div>
+        </div>
+        <a href="https://www.efset.org/cert/qx1oxs" target="_blank" class="cert-link">View ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-left">
+      <div class="section-header" style="margin-bottom:0">
+        <span class="section-num">05</span>
+        <h2>Let's talk.</h2>
+      </div>
+      <p class="contact-desc">
+        Open to new challenges, collaborations, and interesting backend problems. Don't hesitate to reach out.
+      </p>
+    </div>
+    <div class="contact-right">
+      <div class="contact-item">
+        <span class="contact-label">Email</span>
+        <a href="mailto:carloscoxbau@gmail.com" class="contact-value">carloscoxbau@gmail.com</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Phone</span>
+        <a href="tel:+50236717973" class="contact-value">+502 3671 7973</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Guatemala City, Guatemala</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 Carlos Javier Cox Bautista</p>
+    <p>Backend Developer · Computer Science Student · USAC</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

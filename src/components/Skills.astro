@@ -1,0 +1,105 @@
+<section id="skills">
+  <div class="section-header fade-up">
+    <span class="section-num">01</span>
+    <h2>Technical Skills</h2>
+  </div>
+  <div class="grid fade-up">
+    <div class="skill-group">
+      <div class="skill-group-title">Languages</div>
+      <div class="skill-list">
+        <span class="skill-item">Python</span>
+        <span class="skill-item">JavaScript / TypeScript</span>
+        <span class="skill-item">C / C++</span>
+        <span class="skill-item">C# / VB .NET</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Frameworks & Tools</div>
+      <div class="skill-list">
+        <span class="skill-item">FastAPI</span>
+        <span class="skill-item">Flask</span>
+        <span class="skill-item">Entity Framework</span>
+        <span class="skill-item">Selenium</span>
+        <span class="skill-item">React</span>
+        <span class="skill-item">Git</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Databases</div>
+      <div class="skill-list">
+        <span class="skill-item">SQL Server</span>
+        <span class="skill-item">MongoDB</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Cloud & Infra</div>
+      <div class="skill-list">
+        <span class="skill-item">AWS</span>
+        <span class="skill-item">UServer</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Soft Skills</div>
+      <div class="skill-list">
+        <span class="skill-item">Problem Solving</span>
+        <span class="skill-item">Work Under Pressure</span>
+        <span class="skill-item">Teamwork</span>
+        <span class="skill-item">Responsibility</span>
+      </div>
+    </div>
+    <div class="skill-group">
+      <div class="skill-group-title">Languages Spoken</div>
+      <div class="skill-list">
+        <span class="skill-item">Spanish — Native</span>
+        <span class="skill-item">English — C1 Advanced</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 0;
+  }
+
+  .skill-group {
+    padding: 2.5rem;
+    border: 1px solid var(--rule);
+    margin: -1px 0 0 -1px;
+    transition: background 0.2s;
+  }
+
+  .skill-group:hover { background: white; }
+
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    margin-bottom: 1.25rem;
+  }
+
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .skill-item {
+    font-size: 0.9rem;
+    color: var(--ink);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .skill-item::before {
+    content: '—';
+    font-family: 'DM Mono', monospace;
+    color: var(--rule);
+    font-size: 0.7rem;
+  }
+</style>
