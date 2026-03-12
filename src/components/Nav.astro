@@ -1,5 +1,9 @@
 <nav>
   <span class="nav-logo">C. Cox — Dev</span>
+  <button class="nav-toggle" aria-label="Toggle menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
   <ul class="nav-links">
     <li><a href="#skills">Skills</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -8,6 +12,15 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
+
+<script>
+  const toggle = document.querySelector('.nav-toggle');
+  const nav = document.querySelector('nav');
+  toggle?.addEventListener('click', () => nav?.classList.toggle('open'));
+  document.querySelectorAll('.nav-links a').forEach(link =>
+    link.addEventListener('click', () => nav?.classList.remove('open'))
+  );
+</script>
 
 <style>
   nav {
@@ -32,6 +45,24 @@
     text-transform: uppercase;
   }
 
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+  }
+
+  .nav-toggle .bar {
+    display: block;
+    width: 20px;
+    height: 1.5px;
+    background: var(--ink);
+    transition: transform 0.3s, opacity 0.3s;
+  }
+
   .nav-links {
     display: flex;
     gap: 2.5rem;
@@ -51,7 +82,37 @@
   .nav-links a:hover { color: var(--accent); }
 
   @media (max-width: 768px) {
-    nav { padding: 1rem 1.5rem; }
-    .nav-links { gap: 1.5rem; }
+    nav {
+      padding: 1rem 5vw;
+      flex-wrap: wrap;
+    }
+
+    .nav-toggle { display: flex; }
+
+    .nav-links {
+      display: none;
+      flex-direction: column;
+      width: 100%;
+      gap: 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      margin-top: 1rem;
+    }
+
+    .nav-links li a {
+      display: block;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    nav.open .nav-links { display: flex; }
+
+    nav.open .bar:first-child {
+      transform: translateY(3.25px) rotate(45deg);
+    }
+
+    nav.open .bar:last-child {
+      transform: translateY(-3.25px) rotate(-45deg);
+    }
   }
 </style>

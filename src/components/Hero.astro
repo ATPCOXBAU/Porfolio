@@ -39,7 +39,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    padding-top: 80px;
+    padding: 80px 0 0;
     border-top: none;
   }
 
@@ -47,7 +47,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 6rem 4rem;
+    padding: 6rem 6vw;
     border-right: 1px solid var(--rule);
   }
 
@@ -103,7 +103,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding: 6rem 4rem;
+    padding: 6rem 6vw;
     position: relative;
     overflow: hidden;
   }
@@ -154,7 +154,7 @@
 
   @media (max-width: 768px) {
     #hero { grid-template-columns: 1fr; }
-    .hero-left { padding: 5rem 1.5rem 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
-    .hero-right { padding: 3rem 1.5rem; }
+    .hero-left { padding: 5rem 5vw 3rem; border-right: none; border-bottom: 1px solid var(--rule); }
+    .hero-right { padding: 3rem 5vw; }
   }
 </style>

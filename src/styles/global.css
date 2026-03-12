@@ -1,13 +1,13 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --bg: #f8f9fc;
-  --ink: #1e1b4b;
-  --ink-soft: #64748b;
-  --accent: #6366f1;
-  --accent-light: #818cf8;
-  --rule: #e2e4ed;
-  --tag-bg: #eef0f8;
+  --bg: #F0F4F1;
+  --ink: #383B39;
+  --ink-soft: #565D56;
+  --accent: #565D56;
+  --accent-light: #9DA69F;
+  --rule: #C5CDC7;
+  --tag-bg: #E3E8E4;
 }
 
 html { scroll-behavior: smooth; }
@@ -22,7 +22,7 @@ body {
 }
 
 section {
-  padding: 7rem 4rem;
+  padding: 7rem 6vw;
   border-top: 1px solid var(--rule);
 }
 
@@ -31,6 +31,7 @@ section {
   align-items: baseline;
   gap: 1.5rem;
   margin-bottom: 4rem;
+  padding-left: 2rem;
 }
 
 .section-num {
@@ -99,5 +100,5 @@ h2 {
 }
 
 @media (max-width: 768px) {
-  section { padding: 5rem 1.5rem; }
+  section { padding: 5rem 5vw; }
 }
